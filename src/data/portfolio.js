@@ -1,6 +1,6 @@
 export const personalData = {
   name: "Mouhamadou Andalla Mbaye",
-  title: "Business Intelligence & Data Analyst",
+  title: "Business Intelligence & Software Developer",
   email: "m.andalla.mbaye@gmail.com",
   location: "Dakar, Sénégal",
   about: "Étudiant en Informatique de Gestion (IAM) et Sciences Économiques & Gestion (UVS). Passionné par la transformation de données complexes en leviers décisionnels stratégiques grâce à Power BI, SQL et l'analyse de données.",
@@ -17,8 +17,7 @@ export const personalData = {
 
   skills: [
     { category: "Data & Analytics", items: ["Power BI", "DAX", "Power Query", "SQL Server", "Python", "Excel Advance"] },
-    { category: "Développement & Web", items: ["C++", "Java", "HTML/CSS", "Git & GitHub"] },
-    { category: "Infrastructure & Réseaux", items: ["Cisco Packet Tracer", "Subnetting", "NAT", "Administration IP"] },
+    { category: "Développement & Web", items: ["React", "Next.js", "JavaScript", "C++", "Java", "Tailwind CSS", "Git & GitHub"] },
   ],
 
   education: [
@@ -60,16 +59,19 @@ export const personalData = {
       id: "togo-labs",
       title: "Tableau de Bord - Togo Labs",
       description: "Conception d'un dashboard interactif sous Power BI pour le suivi des indicateurs clés et l'analyse de données d'exploitation.",
+      highlights: ["Suivi des indicateurs clés", "Analyse des données d'exploitation", "Visualisation interactive sous Power BI"],
       technologies: ["Power BI", "DAX", "Power Query", "Excel"],
-      image: "/assets/togo-labs.png", // Image à placer dans public/assets
-      embedUrl: "", // Lien d'intégration Power BI si disponible
+      image: "/assets/togo-labs.png",
+      githubUrl: "https://github.com/mouhamadouandallambaye-prog/togo-labs-defi1-analysis",
+      embedUrl: "",
     },
     {
       id: "velocity-sales",
       title: "Analyse des Ventes - Velocity Sales",
       description: "Modélisation des données de ventes, création de KPIs de performance commerciale et prévisions sous Power BI & SQL Server.",
+      highlights: ["Modélisation des données commerciales", "Création de KPIs de performance", "Prévisions avec Power BI & SQL Server"],
       technologies: ["Power BI", "SQL Server", "DAX", "Data Modeling"],
-      image: "/assets/velocity-sales.png", // Image à placer dans public/assets
+      image: "/assets/velocity-sales.png",
       embedUrl: "",
     },
   ],
