@@ -4,6 +4,11 @@ export const personalData = {
   email: "m.andalla.mbaye@gmail.com",
   location: "Dakar, Sénégal",
   about: "Étudiant en Informatique de Gestion (IAM) et Sciences Économiques & Gestion (UVS). Passionné par la transformation de données complexes en leviers décisionnels stratégiques grâce à Power BI, SQL et l'analyse de données.",
+  stats: [
+    { value: "2+", label: "Années d'apprentissage" },
+    { value: "2", label: "Projets présentés" },
+    { value: "10+", label: "Technologies étudiées" },
+  ],
   
   socials: {
     github: "https://github.com/mouhamadouandallambaye-prog",
@@ -26,6 +31,27 @@ export const personalData = {
       degree: "Licence en Sciences Économiques et de Gestion (SEG)",
       institution: "Université Virtuelle du Sénégal (UVS)",
       period: "En cours",
+    },
+  ],
+
+  services: [
+    {
+      number: "01",
+      title: "Dashboards décisionnels",
+      description: "Des tableaux de bord Power BI lisibles et orientés vers les indicateurs qui aident vraiment à décider.",
+      tools: ["Power BI", "DAX", "Power Query"],
+    },
+    {
+      number: "02",
+      title: "Analyse & préparation des données",
+      description: "Nettoyage, transformation et exploration de données pour faire émerger des tendances fiables.",
+      tools: ["SQL Server", "Python", "Excel"],
+    },
+    {
+      number: "03",
+      title: "Modélisation BI",
+      description: "Des modèles de données structurés pour suivre la performance et garder une information cohérente.",
+      tools: ["SQL", "Data Modeling", "DAX"],
     },
   ],
 

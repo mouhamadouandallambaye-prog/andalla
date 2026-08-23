@@ -1,31 +1,45 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { personalData } from "@/data/portfolio";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const links = [
+    ["À propos", "about"],
+    ["Compétences", "skills"],
+    ["Projets", "projects"],
+    ["Parcours", "education"],
+  ];
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0a111e]/80 border-b border-white/10">
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        {/* Logo / Nom */}
-        <Link href="/" className="text-xl font-bold tracking-tight text-white hover:text-[#f97316] transition-colors">
+      <div className="max-w-6xl mx-auto px-6 min-h-20 flex items-center justify-between gap-6">
+        <Link href="/" className="text-xl font-bold tracking-tight text-white hover:text-[#f97316] transition-colors" onClick={() => setIsOpen(false)}>
           Andalla<span className="text-[#f97316]">.</span>
         </Link>
 
-        {/* Liens de navigation */}
-        <nav className="flex gap-8 text-sm font-medium text-gray-300">
-          <a href="#about" className="hover:text-[#f97316] transition-colors">À propos</a>
-          <a href="#skills" className="hover:text-[#f97316] transition-colors">Compétences</a>
-          <a href="#projects" className="hover:text-[#f97316] transition-colors">Projets</a>
-          <a href="#education" className="hover:text-[#f97316] transition-colors">Parcours</a>
+        <nav className={`${isOpen ? "flex" : "hidden"} absolute left-0 right-0 top-full flex-col gap-5 border-b border-white/10 bg-[#0a111e] px-6 py-6 md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0`}>
+          {links.map(([label, id]) => (
+            <a key={id} href={`#${id}`} className="text-sm font-medium text-gray-300 hover:text-[#f97316] transition-colors" onClick={() => setIsOpen(false)}>
+              {label}
+            </a>
+          ))}
         </nav>
 
-        {/* Bouton Contact */}
-        <a 
+        <a
           href={`mailto:${personalData.email}`} 
           className="hidden md:inline-flex px-4 py-2 text-sm font-semibold text-white bg-[#f97316] rounded-lg hover:bg-[#ea580c] transition-colors"
         >
           Me contacter
         </a>
+
+        <button type="button" className="md:hidden p-2 text-gray-300 hover:text-[#f97316]" aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={isOpen} onClick={() => setIsOpen((open) => !open)}>
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
     </header>
   );
