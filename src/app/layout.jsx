@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import CustomCursor from "../components/CustomCursor";
 
 export const metadata = {
-  title: "Mouhamadou Andalla Mbaye | Portfolio BI & Data",
+  title: "Andalla",
   description: "Portfolio de Mouhamadou Andalla Mbaye - Business Intelligence & Data Analyst",
 };
 

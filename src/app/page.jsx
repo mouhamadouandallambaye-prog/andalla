@@ -1,18 +1,16 @@
 "use client";
 
+import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { personalData } from "../data/portfolio";
-import { FaArrowRight, FaChartBar, FaCode, FaFileDownload, FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiPython, SiSqlite } from "react-icons/si";
+import { FaArrowRight, FaCode, FaFileDownload, FaGithub, FaLinkedin } from "react-icons/fa";
+import { ArrowUpRight, BarChart3, Code2, Database } from "lucide-react";
 import TiltCard from "../components/TiltCard";
 import { Reveal, RevealItem, RevealList, Typewriter } from "../components/Motion";
 import Contact from "../components/Contact";
 import TechMarquee from "../components/TechMarquee";
-
-const toolIcons = {
-  "Power BI": FaChartBar,
-  Python: SiPython,
-  "SQL Server": SiSqlite,
-};
+import HeroNameWave from "../components/HeroNameWave";
+import CVTabs from "../components/CVTabs";
 
 const floatingStats = [
   ["2+", "Années d'exp."],
@@ -20,12 +18,31 @@ const floatingStats = [
   ["10+", "Technologies"],
   ["Active", "GitHub"],
 ];
+const metricBursts = ["+1", "100%", "DATA", "BI"];
+const statOffsets = [
+  { x: -24, y: -18 },
+  { x: 24, y: -18 },
+  { x: -24, y: 18 },
+  { x: 24, y: 18 },
+];
 
 function SectionHeading({ eyebrow, children, index }) {
   return <div className="section-heading inline-heading"><div><p className="eyebrow">{eyebrow}</p><h2>{children}</h2></div>{index && <span className="section-index">{index}</span>}<div className="section-rule" aria-hidden="true"><span /></div></div>;
 }
 
 export default function Home() {
+  const waveRef = useRef(null);
+  const scanTimer = useRef(null);
+  const [isScanning, setIsScanning] = useState(false);
+  const [isPortraitHovered, setIsPortraitHovered] = useState(false);
+
+  function triggerScan() {
+    setIsScanning(true);
+    waveRef.current?.triggerWave();
+    window.clearTimeout(scanTimer.current);
+    scanTimer.current = window.setTimeout(() => setIsScanning(false), 1150);
+  }
+
   return (
     <div className="portfolio-shell">
       <main className="max-w-6xl mx-auto px-6">
@@ -35,37 +52,23 @@ export default function Home() {
             <h1>Je transforme les données en <span><Typewriter text="clarté." /></span></h1>
             <p className="hero-description">{personalData.about} Je développe également des interfaces et logiciels avec React, Next.js, Python, C++ et Java.</p>
             <div className="hero-actions">
-              <a href="/assets/CV_Mouhamadou_Andalla_Mbaye.pdf" download className="primary-action"><FaFileDownload /> Télécharger mon CV</a>
+              <a href="/assets/CV_Mouhamadou_Andalla_Mbaye.pdf.pdf" download className="primary-action"><FaFileDownload /> Télécharger mon CV</a>
               <div className="social-links" aria-label="Réseaux sociaux">
                 <a href={personalData.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a>
                 <a href={personalData.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
               </div>
             </div>
           </div>
-          <div className="hero-portrait-wrap">
-            <p className="portrait-heading">Moi c&apos;est Mouhamadou Andalla Mbaye</p>
+          <div className={`hero-portrait-wrap ${isScanning ? "hero-scanning" : ""} ${isPortraitHovered ? "hero-hovering" : ""}`}>
+            <HeroNameWave ref={waveRef} />
             <div className="hero-orbit hero-orbit-one" />
             <div className="hero-orbit hero-orbit-two" />
-            <div className="hero-portrait"><img src="/assets/photo.jpeg" alt={personalData.name} /></div>
-            {floatingStats.map(([value, label], index) => <div className={`floating-stat floating-stat-${index + 1}`} key={label}><strong>{value}</strong><span>{label}</span></div>)}
+            <motion.div className="hero-portrait" onPointerEnter={() => { setIsPortraitHovered(true); triggerScan(); }} onPointerLeave={() => setIsPortraitHovered(false)} onPointerDown={triggerScan} whileTap={{ scale: .97 }}><img src="/assets/photo.jpeg" alt={personalData.name} /><span className="scan-grid" aria-hidden="true" /><span className="scan-laser" aria-hidden="true" /></motion.div>
+            {floatingStats.map(([value, label], index) => <motion.div className={`floating-stat floating-stat-${index + 1}`} key={label} animate={isScanning ? statOffsets[index] : { x: 0, y: 0 }} transition={{ type: "spring", stiffness: 360, damping: 15, mass: .65 }}><strong>{value}</strong><span>{label}</span><AnimatePresence>{isScanning && <motion.span className="metric-burst" initial={{ opacity: 0, y: 4, scale: .7 }} animate={{ opacity: [0, 1, 0], y: -34, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .9, delay: index * .06, ease: "easeOut" }}>{metricBursts[index]}</motion.span>}</AnimatePresence></motion.div>)}
           </div>
         </section></Reveal>
 
         <TechMarquee />
-
-        <Reveal><section className="stats-strip" aria-label="Chiffres clés">
-          {personalData.stats.map((stat) => <div key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></div>)}
-        </section></Reveal>
-
-        <Reveal className="section-block"><section id="skills">
-          <SectionHeading eyebrow="Ma double expertise">Analyser, construire,<br /><span>faire avancer.</span></SectionHeading>
-          <RevealList className="skills-grid">
-            {personalData.skills.map((group) => {
-              const Icon = toolIcons[group.items[0]];
-              return <RevealItem key={group.category}><article className="skill-card"><div className="skill-icon">{Icon ? <Icon /> : "#"}</div><h3>{group.category}</h3><div className="tag-list">{group.items.map((item) => <span key={item}>{item}</span>)}</div></article></RevealItem>;
-            })}
-          </RevealList>
-        </section></Reveal>
 
         <Reveal className="section-block projects-section"><section id="projects">
           <SectionHeading eyebrow="Sélection de travaux" index="02 / 04">Mes projets</SectionHeading>
@@ -74,15 +77,12 @@ export default function Home() {
           </RevealList>
         </section></Reveal>
 
-        <Reveal className="section-block services-section"><section>
-          <SectionHeading eyebrow="Ce que je peux apporter">Une approche pensée<br />pour <span>l&apos;action.</span></SectionHeading>
-          <div className="services-list">{personalData.services.map((service) => <article className="service-row" key={service.number}><span className="service-number">{service.number}</span><div><h3>{service.title}</h3><p>{service.description}</p><div className="tag-list">{service.tools.map((tool) => <span key={tool}>{tool}</span>)}</div></div><FaArrowRight className="service-arrow" /></article>)}</div>
+        <Reveal className="section-block services-section"><section id="services">
+          <SectionHeading eyebrow="Ce que je peux apporter">Mes <span>Services.</span></SectionHeading>
+          <div className="services-grid">{personalData.services.map((service) => { const Icon = service.icon === "chart" ? BarChart3 : service.icon === "database" ? Database : Code2; return <article className="service-card" key={service.number}><div className="service-card-top"><span className="service-number">{service.number}</span><Icon size={28} /></div><h3>{service.title}</h3><p>{service.description}</p><p className="service-impact">{service.impact}</p><ul>{service.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><div className="tag-list">{service.tools.map((tool) => <span key={tool}>{tool}</span>)}</div><a href="#contact" className="service-cta">Lancer un projet <ArrowUpRight size={16} /></a></article>; })}</div>
         </section></Reveal>
 
-        <Reveal className="section-block education-section"><section id="education">
-          <SectionHeading eyebrow="Formation & cursus" index="03 / 04">Mon parcours</SectionHeading>
-          <div className="education-list">{personalData.education.map((item) => <article key={item.degree}><span className="education-period">{item.period}</span><div><h3>{item.degree}</h3><p>{item.institution}</p></div></article>)}</div>
-        </section></Reveal>
+        <Reveal className="section-block"><CVTabs /></Reveal>
 
         <Reveal><Contact email={personalData.email} location={personalData.location} /></Reveal>
       </main>

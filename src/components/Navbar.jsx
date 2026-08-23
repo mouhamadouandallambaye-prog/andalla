@@ -10,9 +10,9 @@ export default function Navbar() {
 
   const links = [
     ["À propos", "about"],
-    ["Compétences", "skills"],
+    ["Services", "services"],
     ["Projets", "projects"],
-    ["Parcours", "education"],
+    ["Parcours", "cv"],
   ];
 
   return (
