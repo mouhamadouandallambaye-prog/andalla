@@ -14,7 +14,7 @@ import CVTabs from "../components/CVTabs";
 
 const floatingStats = [
   ["2+", "Années d'exp."],
-  ["2", "Projets BI & Web"],
+  ["7+", "Projets BI & Web"],
   ["10+", "Technologies"],
   ["Active", "GitHub"],
 ];
