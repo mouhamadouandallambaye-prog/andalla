@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useCallback, useImperativeHandle } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 
 const name = "Moi c'est Mouhamadou Andalla Mbaye";
@@ -13,12 +13,12 @@ const HeroNameWave = forwardRef(function HeroNameWave(_, ref) {
   const controls = useAnimationControls();
   const letters = Array.from(name);
 
-  async function triggerWave() {
+  const triggerWave = useCallback(async function triggerWave() {
     controls.set("idle");
     await controls.start("wave");
-  }
+  }, [controls]);
 
-  useImperativeHandle(ref, () => ({ triggerWave }), []);
+  useImperativeHandle(ref, () => ({ triggerWave }), [triggerWave]);
 
   return (
     <motion.button type="button" className="portrait-heading hero-name-wave" onClick={triggerWave} animate={controls} initial="idle" variants={{ wave: { transition: { staggerChildren: 0.022 } } }} aria-label="Animer mon nom">

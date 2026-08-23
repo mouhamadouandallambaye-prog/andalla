@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaArrowRight, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 
 const initialForm = { name: "", email: "", subject: "", message: "" };
 
-export default function Contact({ email, location }) {
+export default function Contact({ email, location, phone, socials }) {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ type: "idle", message: "" });
 
@@ -19,11 +19,20 @@ export default function Contact({ email, location }) {
     setStatus({ type: "loading", message: "Envoi en cours..." });
 
     try {
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey) {
+        const mailSubject = encodeURIComponent(form.subject || "Nouveau message depuis le portfolio");
+        const mailBody = encodeURIComponent(`Nom : ${form.name}\nEmail : ${form.email}\n\n${form.message}`);
+        window.location.href = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
+        setStatus({ type: "success", message: "Votre messagerie va s'ouvrir pour finaliser l'envoi." });
+        return;
+      }
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          access_key: accessKey,
           subject: form.subject || "Nouveau message depuis le portfolio",
           from_name: form.name,
           email: form.email,
@@ -47,7 +56,9 @@ export default function Contact({ email, location }) {
         <p>Parlons de vos besoins en analyse, reporting, développement logiciel ou application web.</p>
         <div className="contact-details">
           <a href={`mailto:${email}`}><FaEnvelope /> {email}</a>
+          <a href={`tel:${phone.replace(/\s/g, "")}`}><FaPhone /> {phone}</a>
           <p><FaMapMarkerAlt /> {location}</p>
+          <div className="contact-socials"><a href={socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin /></a><a href={socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a></div>
         </div>
       </div>
       <form className="contact-form" onSubmit={handleSubmit}>

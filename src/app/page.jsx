@@ -34,7 +34,6 @@ export default function Home() {
   const waveRef = useRef(null);
   const scanTimer = useRef(null);
   const [isScanning, setIsScanning] = useState(false);
-  const [isPortraitHovered, setIsPortraitHovered] = useState(false);
 
   function triggerScan() {
     setIsScanning(true);
@@ -59,11 +58,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={`hero-portrait-wrap ${isScanning ? "hero-scanning" : ""} ${isPortraitHovered ? "hero-hovering" : ""}`}>
+          <div className={`hero-portrait-wrap ${isScanning ? "hero-scanning" : ""}`}>
             <HeroNameWave ref={waveRef} />
             <div className="hero-orbit hero-orbit-one" />
             <div className="hero-orbit hero-orbit-two" />
-            <motion.div className="hero-portrait" onPointerEnter={() => { setIsPortraitHovered(true); triggerScan(); }} onPointerLeave={() => setIsPortraitHovered(false)} onPointerDown={triggerScan} whileTap={{ scale: .97 }}><img src="/assets/photo.jpeg" alt={personalData.name} /><span className="scan-grid" aria-hidden="true" /><span className="scan-laser" aria-hidden="true" /></motion.div>
+            <motion.div className="hero-portrait" onPointerDown={triggerScan} whileTap={{ scale: .97 }}><img src="/assets/photo.jpeg" alt={personalData.name} /><span className="scan-grid" aria-hidden="true" /><span className="scan-laser" aria-hidden="true" /></motion.div>
             {floatingStats.map(([value, label], index) => <motion.div className={`floating-stat floating-stat-${index + 1}`} key={label} animate={isScanning ? statOffsets[index] : { x: 0, y: 0 }} transition={{ type: "spring", stiffness: 360, damping: 15, mass: .65 }}><strong>{value}</strong><span>{label}</span><AnimatePresence>{isScanning && <motion.span className="metric-burst" initial={{ opacity: 0, y: 4, scale: .7 }} animate={{ opacity: [0, 1, 0], y: -34, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .9, delay: index * .06, ease: "easeOut" }}>{metricBursts[index]}</motion.span>}</AnimatePresence></motion.div>)}
           </div>
         </section></Reveal>
@@ -84,7 +83,7 @@ export default function Home() {
 
         <Reveal className="section-block"><CVTabs /></Reveal>
 
-        <Reveal><Contact email={personalData.email} location={personalData.location} /></Reveal>
+        <Reveal><Contact email={personalData.email} location={personalData.location} phone={personalData.phone} socials={personalData.socials} /></Reveal>
       </main>
     </div>
   );

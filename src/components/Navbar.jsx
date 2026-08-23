@@ -25,8 +25,8 @@ export default function Navbar() {
         <div className="flex items-center justify-end gap-6">
           <nav className={`${isOpen ? "flex" : "hidden"} absolute left-0 right-0 top-full flex-col gap-5 border-b border-white/10 bg-[#0a111e] px-6 py-6 md:static md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0`}>
             {links.map(([label, id]) => (
-              <a key={id} href={`#${id}`} className="text-base font-medium text-gray-300 hover:text-[#f97316] transition-colors" onClick={() => setIsOpen(false)}>
-                {label}
+              <a key={id} href={`#${id}`} className="nav-link text-base font-medium text-gray-300 hover:text-[#f97316] transition-colors" onClick={() => setIsOpen(false)}>
+                <span>{label}</span>
               </a>
             ))}
           </nav>

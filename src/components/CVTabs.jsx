@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Braces, Briefcase, Code2, Database, FileCode2, GitBranch, Globe2, GraduationCap, User, MapPin, Phone, Languages, Sparkles, Terminal } from "lucide-react";
+import { ArrowUpRight, Briefcase, Code2, Database, FileCode2, GitBranch, Globe2, GraduationCap, User, MapPin, Phone, Languages, Sparkles, Terminal } from "lucide-react";
 import { personalData } from "../data/portfolio";
 
 const tabs = [
