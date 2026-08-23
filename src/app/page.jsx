@@ -31,7 +31,7 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6">
         <Reveal><section id="about" className="hero-section">
           <div className="hero-copy">
-            <p className="eyebrow">Business Intelligence &amp; Software Developer</p>
+            <p className="eyebrow role-heading">Business Intelligence &amp; Software Developer</p>
             <h1>Je transforme les données en <span><Typewriter text="clarté." /></span></h1>
             <p className="hero-description">{personalData.about} Je développe également des interfaces et logiciels avec React, Next.js, Python, C++ et Java.</p>
             <div className="hero-actions">
@@ -43,6 +43,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-portrait-wrap">
+            <p className="portrait-heading">Moi c&apos;est Mouhamadou Andalla Mbaye</p>
             <div className="hero-orbit hero-orbit-one" />
             <div className="hero-orbit hero-orbit-two" />
             <div className="hero-portrait"><img src="/assets/photo.jpeg" alt={personalData.name} /></div>

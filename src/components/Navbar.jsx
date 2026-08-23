@@ -22,20 +22,22 @@ export default function Navbar() {
           Andalla<span className="text-[#f97316]">.</span>
         </Link>
 
-        <nav className={`${isOpen ? "flex" : "hidden"} absolute left-0 right-0 top-full flex-col gap-5 border-b border-white/10 bg-[#0a111e] px-6 py-6 md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0`}>
-          {links.map(([label, id]) => (
-            <a key={id} href={`#${id}`} className="text-sm font-medium text-gray-300 hover:text-[#f97316] transition-colors" onClick={() => setIsOpen(false)}>
-              {label}
-            </a>
-          ))}
-        </nav>
+        <div className="flex items-center justify-end gap-6">
+          <nav className={`${isOpen ? "flex" : "hidden"} absolute left-0 right-0 top-full flex-col gap-5 border-b border-white/10 bg-[#0a111e] px-6 py-6 md:static md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0`}>
+            {links.map(([label, id]) => (
+              <a key={id} href={`#${id}`} className="text-base font-medium text-gray-300 hover:text-[#f97316] transition-colors" onClick={() => setIsOpen(false)}>
+                {label}
+              </a>
+            ))}
+          </nav>
 
-        <a
-          href={`mailto:${personalData.email}`} 
-          className="hidden md:inline-flex px-4 py-2 text-sm font-semibold text-white bg-[#f97316] rounded-lg hover:bg-[#ea580c] transition-colors"
-        >
-          Me contacter
-        </a>
+          <a
+            href={`mailto:${personalData.email}`} 
+            className="hidden md:inline-flex px-4 py-2 text-sm font-semibold text-white bg-[#f97316] rounded-lg hover:bg-[#ea580c] transition-colors"
+          >
+            Contactez moi
+          </a>
+        </div>
 
         <button type="button" className="md:hidden p-2 text-gray-300 hover:text-[#f97316]" aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={isOpen} onClick={() => setIsOpen((open) => !open)}>
           {isOpen ? <FaTimes /> : <FaBars />}
