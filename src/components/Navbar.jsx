@@ -33,10 +33,10 @@ export default function Navbar() {
   }
 
   const links = [
-    ["À propos", "about"],
-    ["Services", "services"],
-    ["Projets", "projects"],
-    ["Parcours", "cv"],
+    ["Profil", "about"],
+    ["Expertise", "services"],
+    ["Études de cas", "projects"],
+    ["Repères", "cv"],
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function Navbar() {
             href={`mailto:${personalData.email}`} 
             className="contact-nav-link hidden md:inline-flex px-4 py-2 text-sm font-semibold rounded-lg transition-colors"
           >
-            Contactez moi
+            Échanger
           </a>
           <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label={isLight ? "Activer le thème sombre" : "Activer le thème clair"} title={isLight ? "Thème sombre" : "Thème clair"}>
             {isLight ? <Moon size={18} /> : <Sun size={18} />}

@@ -51,9 +51,9 @@ export default function Contact({ email, location, phone, socials }) {
   return (
     <section className="contact-section" id="contact">
       <div className="contact-intro">
-        <p className="eyebrow">Travaillons ensemble</p>
-        <div className="contact-title-row"><h2>Un projet data<br /><span>en tête ?</span></h2></div>
-        <p>Parlons de vos besoins en analyse, reporting, développement logiciel ou application web.</p>
+        <p className="eyebrow">Passons de la donnée à l&apos;action</p>
+        <div className="contact-title-row"><h2>Une question métier<br /><span>à éclairer ?</span></h2></div>
+        <p>Décrivez votre enjeu : je vous aiderai à cadrer les indicateurs, le modèle et la restitution les plus utiles.</p>
         <div className="contact-details">
           <a href={`mailto:${email}`}><FaEnvelope /> {email}</a>
           <a href={`tel:${phone.replace(/\s/g, "")}`}><FaPhone /> {phone}</a>
@@ -66,10 +66,10 @@ export default function Contact({ email, location, phone, socials }) {
           <label>Nom<input required name="name" value={form.name} onChange={handleChange} placeholder="Votre nom" /></label>
           <label>Email<input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="vous@exemple.com" /></label>
         </div>
-        <label>Sujet<input name="subject" value={form.subject} onChange={handleChange} placeholder="Parlons de votre projet" /></label>
+        <label>Sujet<input name="subject" value={form.subject} onChange={handleChange} placeholder="Quel indicateur voulez-vous éclairer ?" /></label>
         <label>Message<textarea required name="message" value={form.message} onChange={handleChange} placeholder="Décrivez votre besoin..." rows="5" /></label>
         <motion.button className="submit-button" type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} disabled={status.type === "loading"}>
-          {status.type === "loading" ? "Envoi..." : "Envoyer le message"} <FaArrowRight />
+          {status.type === "loading" ? "Transmission..." : "Ouvrir la discussion"} <FaArrowRight />
         </motion.button>
         <motion.p className={`form-status ${status.type}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: status.type === "idle" ? 0 : 1, y: 0 }} role="status">{status.message}</motion.p>
       </form>

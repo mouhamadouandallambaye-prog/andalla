@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { BriefcaseBusiness, FolderKanban, Home, Mail } from "lucide-react";
 
 const items = [
-  ["about", "Portfolio", Home],
-  ["cv", "Parcours", BriefcaseBusiness],
-  ["projects", "Projets", FolderKanban],
-  ["contact", "Contact", Mail],
+  ["about", "Profil", Home],
+  ["cv", "Repères", BriefcaseBusiness],
+  ["projects", "Études de cas", FolderKanban],
+  ["contact", "Échange", Mail],
 ];
 
 export default function SidebarNav() {

@@ -47,11 +47,11 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6">
         <Reveal><section id="about" className="hero-section">
           <div className="hero-copy">
-            <p className="eyebrow role-heading">Business Intelligence &amp; Software Developer</p>
+            <p className="eyebrow role-heading">Analyste BI &amp; développeur de solutions</p>
             <h1>Je transforme les données en <span><Typewriter text="clarté." /></span></h1>
             <p className="hero-description">{personalData.about} Je développe également des interfaces et logiciels avec React, Next.js, Python, C++ et Java.</p>
             <div className="hero-actions">
-              <a href="/assets/CV_Mouhamadou_Andalla_Mbaye.pdf.pdf" download className="primary-action"><FaFileDownload /> Télécharger mon CV</a>
+              <a href="/assets/CV_Mouhamadou_Andalla_Mbaye.pdf.pdf" download className="primary-action"><FaFileDownload /> Recevoir mon CV</a>
               <div className="social-links" aria-label="Réseaux sociaux">
                 <a href={personalData.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a>
                 <a href={personalData.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
@@ -70,15 +70,15 @@ export default function Home() {
         <TechMarquee />
 
         <Reveal className="section-block projects-section"><section id="projects">
-          <SectionHeading eyebrow="Sélection de travaux" index="02 / 04">Mes projets</SectionHeading>
+          <SectionHeading eyebrow="Analyses mises en situation" index="02 / 04">Études de cas</SectionHeading>
           <RevealList className="projects-grid">
             {personalData.projects.map((project, index) => <RevealItem key={project.id}><TiltCard><article className="project-card"><div className="project-visual"><span className="project-number">0{index + 1}</span><img src={project.image} alt={project.title} /></div><div className="project-content"><p className="project-type">Power BI / Data</p><h3>{project.title}</h3><ul className="project-highlights">{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul><div className="tag-list">{project.technologies.map((tech) => <span key={tech}>{tech}</span>)}</div>{project.githubUrl && <a className="project-link" href={project.githubUrl} target="_blank" rel="noreferrer"><FaCode /> Voir le code sur GitHub <FaArrowRight /></a>}</div></article></TiltCard></RevealItem>)}
           </RevealList>
         </section></Reveal>
 
         <Reveal className="section-block services-section"><section id="services">
-          <SectionHeading eyebrow="Ce que je peux apporter">Mes <span>Services.</span></SectionHeading>
-          <RevealList className="services-grid">{personalData.services.map((service) => { const Icon = service.icon === "chart" ? BarChart3 : service.icon === "database" ? Database : Code2; return <RevealItem key={service.number}><article className="service-card"><div className="service-card-top"><span className="service-number">{service.number}</span><Icon size={28} /></div><h3>{service.title}</h3><p>{service.description}</p><p className="service-impact">{service.impact}</p><ul>{service.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><div className="tag-list">{service.tools.map((tool) => <span key={tool}>{tool}</span>)}</div><a href="#contact" className="service-cta">Lancer un projet <ArrowUpRight size={16} /></a></article></RevealItem>; })}</RevealList>
+          <SectionHeading eyebrow="Mon terrain d'action">Mes <span>expertises.</span></SectionHeading>
+          <RevealList className="services-grid">{personalData.services.map((service, index) => { const Icon = service.icon === "chart" ? BarChart3 : service.icon === "database" ? Database : Code2; return <RevealItem key={service.number}><article className={`service-card ${index === 0 ? "service-card-featured" : "service-card-secondary"}`}><div className="service-card-top"><span className="service-number">{service.number}</span><Icon size={28} /></div><h3>{service.title}</h3><p>{service.description}</p><p className="service-impact">{service.impact}</p><div className="service-metric" style={{ "--metric-value": `${service.score}%` }}><div><span>{service.metric}</span><strong>{service.score}%</strong></div><span className="service-meter"><span /></span></div><ul>{service.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><div className="tag-list">{service.tools.map((tool) => <span key={tool}>{tool}</span>)}</div><a href="#contact" className="service-cta">Discuter du besoin <ArrowUpRight size={16} /></a></article></RevealItem>; })}</RevealList>
         </section></Reveal>
 
         <Reveal className="section-block"><CVTabs /></Reveal>

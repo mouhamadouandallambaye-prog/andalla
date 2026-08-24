@@ -34,7 +34,7 @@ export default function CustomCursor() {
 
   return (
     <>
-      <motion.div className="custom-cursor-shell" style={{ x: ringX, y: ringY }} animate={{ scale: hovering ? 1.42 : 1 }} transition={{ type: "spring", stiffness: 420, damping: 28 }}>
+      <motion.div className={`custom-cursor-shell ${hovering ? "cursor-fused" : ""}`} style={{ x: ringX, y: ringY }} animate={{ scale: hovering ? 1.42 : 1 }} transition={{ type: "spring", stiffness: 420, damping: 28 }}>
         <div className="custom-cursor-target" aria-hidden="true">
           <span className="target-segment target-segment-top" />
           <span className="target-segment target-segment-right" />
