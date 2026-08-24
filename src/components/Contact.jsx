@@ -52,7 +52,7 @@ export default function Contact({ email, location, phone, socials }) {
     <section className="contact-section" id="contact">
       <div className="contact-intro">
         <p className="eyebrow">Travaillons ensemble</p>
-        <div className="contact-title-row"><h2>Un projet data<br /><span>en tête ?</span></h2><div className="section-rule" aria-hidden="true"><span /></div></div>
+        <div className="contact-title-row"><h2>Un projet data<br /><span>en tête ?</span></h2></div>
         <p>Parlons de vos besoins en analyse, reporting, développement logiciel ou application web.</p>
         <div className="contact-details">
           <a href={`mailto:${email}`}><FaEnvelope /> {email}</a>

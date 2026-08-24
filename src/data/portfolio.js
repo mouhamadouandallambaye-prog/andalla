@@ -13,7 +13,7 @@ export const personalData = {
   stats: [
     { value: "2+", label: "Années d'apprentissage" },
     { value: "2", label: "Projets présentés" },
-    { value: "10+", label: "Technologies étudiées" },
+    { value: "20+", label: "Technologies étudiées" },
   ],
   
   socials: {
@@ -64,6 +64,21 @@ export const personalData = {
     },
   ],
 
+  recommendations: [
+    {
+      title: "Lettre de recommandation de M. Ameth Camara",
+      author: "Professeur de C++ chez Institut Africain de Management (IAM)",
+      quote: "Sa rigueur intellectuelle et sa curiosité technique lui ont permis d'assimiler rapidement des concepts de programmation complexes. Il aborde chaque exercice avec méthode, patience et un souci constant de bien comprendre avant d'agir.",
+      file: "/assets/lettre_recommandation_Camara.pdf",
+    },
+    {
+      title: "Lettre de recommandation de M. Baba TOP",
+      author: "Lead Tech & Développeur Full Stack Senior, enseignant en Génie Logiciel chez Institut Africain de Management (IAM)",
+      quote: "Il fait partie des étudiants qui posent les bonnes questions et qui cherchent à relier ce qu'ils apprennent aux besoins concrets d'un système d'information. Autonome, persévérant et doté d'un bon esprit d'équipe, il sait s'investir sérieusement dans les missions qui lui sont confiées.",
+      file: "/assets/Lettre_recommandation_Top.pdf",
+    },
+  ],
+
   services: [
     {
       number: "01",
@@ -96,21 +111,21 @@ export const personalData = {
 
   projects: [
     {
-      id: "commercial-dashboard",
-      title: "Dashboard commercial - projet fil rouge",
-      description: "Modélisation d'un schéma en étoile sous Power BI pour consolider le suivi des ventes et des flux de paiement.",
-      highlights: ["Analyse de 55K€ de chiffre d'affaires", "Étude du comportement de 50 clients", "Mesures DAX pour le pilotage commercial"],
-      technologies: ["Power BI", "DAX", "Excel", "Data Modeling"],
-      image: "/assets/togo-labs.png",
-      githubUrl: "https://github.com/mouhamadouandallambaye-prog/togo-labs-defi1-analysis",
-      embedUrl: "",
-      },
-    {
       id: "velocity-sales",
       title: "Dashboard hydraulique - TDE",
       description: "Dashboard et rapport stratégique sur les indicateurs hydrauliques, avec analyse de la couverture et de l'avancement du programme.",
       highlights: ["Taux de décaissement de 4 Mds FCFA", "Taux d'avancement de 55,96 %", "Rapport interactif de 3 pages et analyse stratégique de 10 pages"],
       technologies: ["Power BI", "DAX", "Data Storytelling", "Excel"],
+      image: "/assets/togo-labs.png",
+      githubUrl: "https://github.com/mouhamadouandallambaye-prog/togo-labs-defi1-analysis",
+      embedUrl: "",
+    },
+    {
+      id: "commercial-dashboard",
+      title: "Dashboard BI - Pilotage de la Rentabilité Ventes",
+      description: "Modélisation d'un schéma en étoile sous Power BI pour consolider le suivi des ventes et des flux de paiement.",
+      highlights: ["Analyse de 192,5 K€ de CA (+49,5% vs budget) et suivi de 64,2 K€ de marge", "Pilotage multi-dimensionnel : performance par commercial, région et portefeuille clients", "Modélisation DAX & Power Query : calculs d'écarts, taux de marge et réalisations YTD"],
+      technologies: ["Power BI", "DAX", "Power Query", "Data Modeling", "Sales Analytics"],
       image: "/assets/velocity-sales.png",
       embedUrl: "",
     },

@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import CustomCursor from "../components/CustomCursor";
 import SidebarNav from "../components/SidebarNav";
+import BackToTop from "../components/BackToTop";
 
 export const metadata = {
   title: "Andalla",
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
         <CustomCursor />
         <Navbar />
         <SidebarNav />
+        <BackToTop />
         <main className="flex-grow">{children}</main>
         <footer className="py-8 text-center text-xs text-gray-500 border-t border-white/5">
           © {new Date().getFullYear()} Mouhamadou Andalla Mbaye — Tous droits réservés.

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { personalData } from "../data/portfolio";
 import { FaArrowRight, FaCode, FaFileDownload, FaGithub, FaLinkedin } from "react-icons/fa";
-import { ArrowUpRight, BarChart3, Code2, Database } from "lucide-react";
+import { ArrowUpRight, BarChart3, BriefcaseBusiness, Code2, Database, FolderKanban } from "lucide-react";
 import TiltCard from "../components/TiltCard";
 import { Reveal, RevealItem, RevealList, Typewriter } from "../components/Motion";
 import Contact from "../components/Contact";
@@ -13,10 +13,10 @@ import HeroNameWave from "../components/HeroNameWave";
 import CVTabs from "../components/CVTabs";
 
 const floatingStats = [
-  ["2+", "Années d'exp."],
-  ["7+", "Projets BI & Web"],
-  ["10+", "Technologies"],
-  ["Active", "GitHub"],
+  ["2+", "Années de pratique", BriefcaseBusiness],
+  ["7+", "Projets BI & Web", FolderKanban],
+  ["20+", "Technologies", Code2],
+  ["Active", "GitHub", FaGithub],
 ];
 const metricBursts = ["+1", "100%", "DATA", "BI"];
 const statOffsets = [
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="hero-orbit hero-orbit-one" />
             <div className="hero-orbit hero-orbit-two" />
             <motion.div className="hero-portrait" onPointerDown={triggerScan} whileTap={{ scale: .97 }}><img src="/assets/photo.jpeg" alt={personalData.name} /><span className="scan-grid" aria-hidden="true" /><span className="scan-laser" aria-hidden="true" /></motion.div>
-            {floatingStats.map(([value, label], index) => <motion.div className={`floating-stat floating-stat-${index + 1}`} key={label} animate={isScanning ? statOffsets[index] : { x: 0, y: 0 }} transition={{ type: "spring", stiffness: 360, damping: 15, mass: .65 }}><strong>{value}</strong><span>{label}</span><AnimatePresence>{isScanning && <motion.span className="metric-burst" initial={{ opacity: 0, y: 4, scale: .7 }} animate={{ opacity: [0, 1, 0], y: -34, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .9, delay: index * .06, ease: "easeOut" }}>{metricBursts[index]}</motion.span>}</AnimatePresence></motion.div>)}
+            {floatingStats.map(([value, label, Icon], index) => <motion.div className={`floating-stat floating-stat-${index + 1}`} key={label} animate={isScanning ? statOffsets[index] : { x: 0, y: 0 }} transition={{ type: "spring", stiffness: 360, damping: 15, mass: .65 }}><div className="floating-stat-heading"><Icon size={15} aria-hidden="true" /><strong>{value}</strong></div><span>{label}</span><AnimatePresence>{isScanning && <motion.span className="metric-burst" initial={{ opacity: 0, y: 4, scale: .7 }} animate={{ opacity: [0, 1, 0], y: -34, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .9, delay: index * .06, ease: "easeOut" }}>{metricBursts[index]}</motion.span>}</AnimatePresence></motion.div>)}
           </div>
         </section></Reveal>
 
@@ -78,7 +78,7 @@ export default function Home() {
 
         <Reveal className="section-block services-section"><section id="services">
           <SectionHeading eyebrow="Ce que je peux apporter">Mes <span>Services.</span></SectionHeading>
-          <div className="services-grid">{personalData.services.map((service) => { const Icon = service.icon === "chart" ? BarChart3 : service.icon === "database" ? Database : Code2; return <article className="service-card" key={service.number}><div className="service-card-top"><span className="service-number">{service.number}</span><Icon size={28} /></div><h3>{service.title}</h3><p>{service.description}</p><p className="service-impact">{service.impact}</p><ul>{service.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><div className="tag-list">{service.tools.map((tool) => <span key={tool}>{tool}</span>)}</div><a href="#contact" className="service-cta">Lancer un projet <ArrowUpRight size={16} /></a></article>; })}</div>
+          <RevealList className="services-grid">{personalData.services.map((service) => { const Icon = service.icon === "chart" ? BarChart3 : service.icon === "database" ? Database : Code2; return <RevealItem key={service.number}><article className="service-card"><div className="service-card-top"><span className="service-number">{service.number}</span><Icon size={28} /></div><h3>{service.title}</h3><p>{service.description}</p><p className="service-impact">{service.impact}</p><ul>{service.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><div className="tag-list">{service.tools.map((tool) => <span key={tool}>{tool}</span>)}</div><a href="#contact" className="service-cta">Lancer un projet <ArrowUpRight size={16} /></a></article></RevealItem>; })}</RevealList>
         </section></Reveal>
 
         <Reveal className="section-block"><CVTabs /></Reveal>
