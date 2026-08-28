@@ -43,6 +43,39 @@ export const personalData = {
     },
   ],
 
+  certifications: [
+    {
+      title: "Data Analytics Job Simulation",
+      issuer: "Deloitte",
+      provider: "Forage",
+      category: "Data Analytics",
+      skills: ["Excel", "Data Analysis", "Data Visualization"],
+      obtainedAt: "2026-08-26",
+      obtained: "26 août 2026",
+      expiresAt: null,
+      expires: "Sans fin de validité",
+      file: "/assets/Data Analytics Job Simulation.pdf",
+      issuerLogo: "https://www.google.com/s2/favicons?domain=deloitte.com&sz=128",
+      providerLogo: "https://www.google.com/s2/favicons?domain=theforage.com&sz=128",
+      verificationNote: "Preuve locale fournie par le certificat PDF",
+    },
+    {
+      title: "Power BI for Beginners",
+      issuer: "Simplilearn",
+      provider: "Coursera",
+      category: "Business Intelligence",
+      skills: ["Power BI", "Data Visualization", "Reporting"],
+      obtainedAt: "2026-08-28",
+      obtained: "28 août 2026",
+      expiresAt: null,
+      expires: "Sans fin de validité",
+      file: "/assets/Power BI for Beginners.pdf",
+      issuerLogo: "https://www.google.com/s2/favicons?domain=simplilearn.com&sz=128",
+      providerLogo: "https://www.google.com/s2/favicons?domain=coursera.org&sz=128",
+      verificationNote: "Preuve locale fournie par le certificat PDF",
+    },
+  ],
+
   experience: [
     {
       period: "2026 - aujourd'hui",
